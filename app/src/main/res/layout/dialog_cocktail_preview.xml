@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#2C2C2C"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/ivPreviewImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:background="#121212" />
+
+    <TextView
+        android:id="@+id/tvPreviewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivPreviewImage"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="Cocktail Name" />
+
+    <TextView
+        android:id="@+id/tvPreviewDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPreviewName"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:text="Ingredients and description go here..." />
+
+    <Button
+        android:id="@+id/btnEditCocktail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPreviewDesc"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#03DAC5"
+        android:textColor="@android:color/black"
+        android:text="EDIT COCKTAIL"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnDeleteCocktail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnEditCocktail"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#CF6679"
+        android:textColor="@android:color/white"
+        android:text="DELETE COCKTAIL"
+        android:textStyle="bold" />
+
+</RelativeLayout>

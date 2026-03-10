@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_admin_dashboard"
+        android:icon="@android:drawable/ic_menu_today"
+        android:iconTint="@color/main_purple"
+        android:title="Events" />
+
+    <item
+        android:id="@+id/nav_admin_insights"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:iconTint="@color/main_purple"
+        android:title="Insights"
+        />
+
+    <item
+        android:id="@+id/nav_admin_cocktails"
+        android:icon="@drawable/cocktail"
+        android:iconTint="@color/main_purple"
+        android:title="Menu" />
+
+    <item
+        android:id="@+id/nav_admin_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:iconTint="@color/main_purple"
+        android:title="Settings" />
+
+</menu>

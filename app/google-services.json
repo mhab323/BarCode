@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1011053430367",
+    "project_id": "barcode-app-71522",
+    "storage_bucket": "barcode-app-71522.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011053430367:android:3c2dcdad14034034e8fdea",
+        "android_client_info": {
+          "package_name": "com.example.barcode"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIE9HHBsUHfhr3p4GAGq0yG-eJkLzVohE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

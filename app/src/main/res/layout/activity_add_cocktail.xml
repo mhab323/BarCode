@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvAddTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Cocktail"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:id="@+id/etCocktailName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAddTitle"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#BB86FC"
+        android:hint="Cocktail Name (e.g., Margarita)"
+        android:inputType="textCapWords"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray" />
+
+    <EditText
+        android:id="@+id/etCocktailDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etCocktailName"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#BB86FC"
+        android:gravity="top|start"
+        android:hint="Ingredients / Description"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/layoutImagePicker"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/etCocktailDesc"
+        android:layout_marginTop="16dp"
+        android:background="#2C2C2C">
+
+        <ImageView
+            android:id="@+id/ivCocktailImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/ivCameraIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"
+            android:src="@android:drawable/ic_menu_camera"
+            app:tint="@color/main_purple" />
+
+        <TextView
+            android:id="@+id/tvImageHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivCameraIcon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Tap to select photo"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnSaveCocktail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutImagePicker"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/main_purple"
+        android:padding="16dp"
+        android:text="SAVE TO MENU"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
