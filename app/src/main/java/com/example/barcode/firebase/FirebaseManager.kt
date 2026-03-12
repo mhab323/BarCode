@@ -18,11 +18,7 @@ object FirebaseManager {
 
     var currentUserRole: String? = null
 
-    fun saveEvent(
-        eventData: HashMap<String, Any>,
-        onSuccess: () -> Unit,
-        onFailure: (Exception) -> Unit
-    ) {
+    fun saveEvent(eventData: HashMap<String, Any>, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         val newEventRef = db.collection("events").document()
 
         eventData["eventId"] = newEventRef.id
@@ -32,7 +28,6 @@ object FirebaseManager {
             .addOnFailureListener { e -> onFailure(e) }
 
     }
-
     fun saveCocktail(cocktail: Cocktail, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         val newDocRef = db.collection("cocktails").document()
         cocktail.cocktailId = newDocRef.id
@@ -41,26 +36,19 @@ object FirebaseManager {
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFailure(it) }
     }
-
     fun deleteCocktail(cocktailId: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         db.collection("cocktails").document(cocktailId)
             .delete()
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFailure(it) }
     }
-
     fun updateCocktail(cocktail: Cocktail, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         db.collection("cocktails").document(cocktail.cocktailId)
             .set(cocktail)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFailure(it) }
     }
-
-    fun listenToBartenderCocktails(
-        bartenderId: String,
-        onSuccess: (List<Cocktail>) -> Unit,
-        onFailure: (Exception) -> Unit
-    ): com.google.firebase.firestore.ListenerRegistration {
+    fun listenToBartenderCocktails(bartenderId: String, onSuccess: (List<Cocktail>) -> Unit, onFailure: (Exception) -> Unit): com.google.firebase.firestore.ListenerRegistration {
         return db.collection("cocktails")
             .whereEqualTo("bartenderId", bartenderId)
             .addSnapshotListener { snapshot, error ->
@@ -81,12 +69,7 @@ object FirebaseManager {
                 }
             }
     }
-
-    fun listenToHostEvents(
-        hostId: String,
-        onSuccess: (List<Event>) -> Unit,
-        onFailure: (Exception) -> Unit
-    ) {
+    fun listenToHostEvents(hostId: String, onSuccess: (List<Event>) -> Unit, onFailure: (Exception) -> Unit) {
         db.collection("events")
             .whereEqualTo("hostId", hostId)
             .addSnapshotListener { snapshot, error ->
@@ -108,12 +91,7 @@ object FirebaseManager {
                 }
             }
     }
-
-    fun getBartenderByShareCode(
-        code: String,
-        onSuccess: (User) -> Unit,
-        onFailure: (Exception) -> Unit
-    ) {
+    fun getBartenderByShareCode(code: String, onSuccess: (User) -> Unit, onFailure: (Exception) -> Unit) {
         db.collection("users")
             .whereEqualTo("shareCode", code)
             .whereEqualTo("role", "admin")
@@ -133,12 +111,7 @@ object FirebaseManager {
             }
             .addOnFailureListener { onFailure(it) }
     }
-
-    fun listenToBartenderEvents(
-        bartenderId: String,
-        onSuccess: (List<Event>) -> Unit,
-        onFailure: (Exception) -> Unit
-    ): com.google.firebase.firestore.ListenerRegistration {
+    fun listenToBartenderEvents(bartenderId: String, onSuccess: (List<Event>) -> Unit, onFailure: (Exception) -> Unit): com.google.firebase.firestore.ListenerRegistration {
         return db.collection("events")
             .whereArrayContains("bartenderIds", bartenderId)
             .addSnapshotListener { snapshot, error ->
@@ -160,12 +133,7 @@ object FirebaseManager {
                 }
             }
     }
-
-    fun uploadCocktailImage(
-        imageUri: android.net.Uri,
-        onSuccess: (String) -> Unit,
-        onFailure: (Exception) -> Unit
-    ) {
+    fun uploadCocktailImage(imageUri: android.net.Uri, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val filename = java.util.UUID.randomUUID().toString() + ".jpg"
         val storageRef =
             com.google.firebase.storage.FirebaseStorage.getInstance().reference.child("cocktail_images/$filename")
@@ -178,7 +146,6 @@ object FirebaseManager {
             }
             .addOnFailureListener { e -> onFailure(e) }
     }
-
     fun fetchAndCacheCurrentUser(onSuccess: (User) -> Unit, onFailure: (Exception) -> Unit) {
         val uid = auth.currentUser?.uid
         if (uid == null) {
@@ -197,7 +164,6 @@ object FirebaseManager {
             }
             .addOnFailureListener { e -> onFailure(e) }
     }
-
     fun generateAndSaveShareCode(onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val uid = auth.currentUser?.uid
         if (uid == null) {
@@ -215,6 +181,7 @@ object FirebaseManager {
             }
             .addOnFailureListener { e -> onFailure(e) }
     }
+
 
     //######################################################################################
     //Real time database

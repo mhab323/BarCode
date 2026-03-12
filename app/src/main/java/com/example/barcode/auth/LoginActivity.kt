@@ -144,7 +144,6 @@ class LoginActivity : AppCompatActivity() {
             onFailure = { error ->
                 binding.btnLogin.isEnabled = true
                 binding.btnLogin.text = "LOG IN"
-                Toast.makeText(this, "Failed to load profile: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         )
     }

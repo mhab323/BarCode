@@ -38,6 +38,9 @@ class LiveBartenderActivity : AppCompatActivity() {
         }
         binding.rvLiveOrders.layoutManager = LinearLayoutManager(this)
         binding.rvLiveOrders.adapter = adapter
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun startListeningForOrders() {

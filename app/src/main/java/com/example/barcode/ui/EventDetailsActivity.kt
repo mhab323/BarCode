@@ -48,7 +48,7 @@ class EventDetailsActivity : AppCompatActivity() {
                     android.widget.Toast.makeText(
                         this,
                         "Event is now LIVE!",
-                        android.widget.Toast.LENGTH_LONG
+                        Toast.LENGTH_LONG
                     ).show()
                     showQRCodeDialog(event.eventId)
                 }

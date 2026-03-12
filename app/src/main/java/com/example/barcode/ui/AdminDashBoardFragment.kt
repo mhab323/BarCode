@@ -1,5 +1,6 @@
 package com.example.barcode.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -49,6 +50,7 @@ class AdminDashBoardFragment : Fragment() {
         binding.rvAdminEvents.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAdminEvents.adapter = eventAdapter
     }
+    @SuppressLint("SetTextI18n")
     private fun updateUIWithEvents(dailyEvents: List<Event>) {
         eventAdapter.updateEvents(dailyEvents)
 
@@ -77,6 +79,7 @@ class AdminDashBoardFragment : Fragment() {
         }
         calendarHelper.setup()
     }
+    @SuppressLint("DefaultLocale")
     private fun filterEventsByDate(selectedDate: LocalDate?) {
         if (selectedDate == null) return
 
@@ -105,13 +108,16 @@ class AdminDashBoardFragment : Fragment() {
             }
         )
     }
-
     private fun findActiveEvent(liveList: List<Event>){
         val activeLiveEvent = liveList.find { it.status == "live" }
 
         if (activeLiveEvent != null) {
-            binding.fabLiveEvent.visibility = View.VISIBLE
 
+            if (isEventExpired(activeLiveEvent)) {
+                binding.fabLiveEvent.visibility = View.GONE
+                return
+            }
+            binding.fabLiveEvent.visibility = View.VISIBLE
             binding.fabLiveEvent.setOnClickListener {
                 val intent = Intent(requireContext(), LiveBartenderActivity::class.java)
                 intent.putExtra("EVENT_ID", activeLiveEvent.eventId)
@@ -121,13 +127,19 @@ class AdminDashBoardFragment : Fragment() {
             binding.fabLiveEvent.visibility = View.GONE
         }
     }
+    private fun isEventExpired(event: Event): Boolean {
+        val fiveHoursInMillis = 18_000_000L
 
+        val startTime = if (event.scheduledTimeMillis > 0) event.scheduledTimeMillis else event.timestamp
+        val currentTime = System.currentTimeMillis()
+
+        return (currentTime - startTime) >= fiveHoursInMillis
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         eventListener?.remove()
         _binding = null
     }
-
     private fun loadAndDisplayShareCode() {
         val currentUser = com.example.barcode.utils.UserManager.currentUser
 
@@ -151,7 +163,6 @@ class AdminDashBoardFragment : Fragment() {
             binding.tvShareCodeLabel.visibility = View.GONE
         }
     }
-
     private fun setupCopyListener(code: String) {
         binding.tvShareCode.setOnClickListener {
             val clipboard = requireContext().getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
