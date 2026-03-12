@@ -18,7 +18,11 @@ object FirebaseManager {
 
     var currentUserRole: String? = null
 
-    fun saveEvent(eventData: HashMap<String, Any>, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+    fun saveEvent(
+        eventData: HashMap<String, Any>,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         val newEventRef = db.collection("events").document()
 
         eventData["eventId"] = newEventRef.id
@@ -28,6 +32,7 @@ object FirebaseManager {
             .addOnFailureListener { e -> onFailure(e) }
 
     }
+
     fun saveCocktail(cocktail: Cocktail, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         val newDocRef = db.collection("cocktails").document()
         cocktail.cocktailId = newDocRef.id
@@ -36,19 +41,26 @@ object FirebaseManager {
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFailure(it) }
     }
+
     fun deleteCocktail(cocktailId: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         db.collection("cocktails").document(cocktailId)
             .delete()
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFailure(it) }
     }
+
     fun updateCocktail(cocktail: Cocktail, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         db.collection("cocktails").document(cocktail.cocktailId)
             .set(cocktail)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { onFailure(it) }
     }
-    fun listenToBartenderCocktails(bartenderId: String, onSuccess: (List<Cocktail>) -> Unit, onFailure: (Exception) -> Unit): com.google.firebase.firestore.ListenerRegistration {
+
+    fun listenToBartenderCocktails(
+        bartenderId: String,
+        onSuccess: (List<Cocktail>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ): com.google.firebase.firestore.ListenerRegistration {
         return db.collection("cocktails")
             .whereEqualTo("bartenderId", bartenderId)
             .addSnapshotListener { snapshot, error ->
@@ -69,7 +81,12 @@ object FirebaseManager {
                 }
             }
     }
-    fun listenToHostEvents(hostId: String, onSuccess: (List<Event>) -> Unit, onFailure: (Exception) -> Unit) {
+
+    fun listenToHostEvents(
+        hostId: String,
+        onSuccess: (List<Event>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         db.collection("events")
             .whereEqualTo("hostId", hostId)
             .addSnapshotListener { snapshot, error ->
@@ -91,7 +108,12 @@ object FirebaseManager {
                 }
             }
     }
-    fun getBartenderByShareCode(code: String, onSuccess: (User) -> Unit, onFailure: (Exception) -> Unit) {
+
+    fun getBartenderByShareCode(
+        code: String,
+        onSuccess: (User) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         db.collection("users")
             .whereEqualTo("shareCode", code)
             .whereEqualTo("role", "admin")
@@ -112,7 +134,11 @@ object FirebaseManager {
             .addOnFailureListener { onFailure(it) }
     }
 
-    fun listenToBartenderEvents(bartenderId: String, onSuccess: (List<Event>) -> Unit, onFailure: (Exception) -> Unit): com.google.firebase.firestore.ListenerRegistration {
+    fun listenToBartenderEvents(
+        bartenderId: String,
+        onSuccess: (List<Event>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ): com.google.firebase.firestore.ListenerRegistration {
         return db.collection("events")
             .whereArrayContains("bartenderIds", bartenderId)
             .addSnapshotListener { snapshot, error ->
@@ -134,9 +160,15 @@ object FirebaseManager {
                 }
             }
     }
-    fun uploadCocktailImage(imageUri: android.net.Uri, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
+
+    fun uploadCocktailImage(
+        imageUri: android.net.Uri,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
         val filename = java.util.UUID.randomUUID().toString() + ".jpg"
-        val storageRef = com.google.firebase.storage.FirebaseStorage.getInstance().reference.child("cocktail_images/$filename")
+        val storageRef =
+            com.google.firebase.storage.FirebaseStorage.getInstance().reference.child("cocktail_images/$filename")
 
         storageRef.putFile(imageUri)
             .addOnSuccessListener {
@@ -165,6 +197,7 @@ object FirebaseManager {
             }
             .addOnFailureListener { e -> onFailure(e) }
     }
+
     fun generateAndSaveShareCode(onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
         val uid = auth.currentUser?.uid
         if (uid == null) {
@@ -188,7 +221,8 @@ object FirebaseManager {
     //######################################################################################
 
     fun placeLiveOrder(order: Order, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        val rtdb = com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app/").reference
+        val rtdb =
+            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
 
         val newOrderRef = rtdb.child("orders").child(order.eventId).push()
         order.orderId = newOrderRef.key ?: ""
@@ -198,4 +232,57 @@ object FirebaseManager {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
+    fun listenToLiveOrders(eventId: String, onOrdersUpdated: (List<Order>) -> Unit) {
+        val rtdb =
+            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
+
+        rtdb.child("orders").child(eventId).orderByChild("status").equalTo("pending")
+            .addValueEventListener(object : com.google.firebase.database.ValueEventListener {
+                override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
+                    val orderList = mutableListOf<Order>()
+                    for (child in snapshot.children) {
+                        val order = child.getValue(Order::class.java)
+                        if (order != null) {
+                            orderList.add(order)
+                        }
+                    }
+                    orderList.sortBy { it.timestamp }
+                    onOrdersUpdated(orderList)
+                }
+
+                override fun onCancelled(error: com.google.firebase.database.DatabaseError) {
+                    android.util.Log.e(
+                        "LiveOrderError",
+                        "Failed to read orders",
+                        error.toException()
+                    )
+                }
+            })
+    }
+
+    fun completeOrder(eventId: String, orderId: String) {
+        val rtdb =
+            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
+        rtdb.child("orders").child(eventId).child(orderId).child("status").setValue("completed")
+    }
+
+    fun listenToOrderStatus(eventId: String, orderId: String, onOrderReady: () -> Unit) {
+        val rtdb =
+            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
+        val statusRef = rtdb.child("orders").child(eventId).child(orderId).child("status")
+
+        statusRef.addValueEventListener(object : com.google.firebase.database.ValueEventListener {
+            override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
+                val currentStatus = snapshot.getValue(String::class.java)
+                if (currentStatus == "completed") {
+                    onOrderReady()
+                    statusRef.removeEventListener(this)
+                }
+            }
+
+            override fun onCancelled(error: com.google.firebase.database.DatabaseError) {
+            }
+        })
+    }
 }
+

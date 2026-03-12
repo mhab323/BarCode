@@ -1,25 +1,33 @@
 package com.example.barcode.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.barcode.R
 import com.example.barcode.auth.LoginActivity
 import com.example.barcode.data.Event
 import com.example.barcode.databinding.ActivityGuestMenuBinding
 import com.example.barcode.firebase.FirebaseManager
 import com.example.barcode.data.Order
+import com.example.barcode.utils.SoundEffectPlayer
+import com.example.barcode.utils.VibrationManager
 
 class GuestMenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGuestMenuBinding
+
+    private lateinit var vibrationManager: VibrationManager
     private var currentEventId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGuestMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initSoundEffect()
+        vibrationManager = VibrationManager(this)
 
         currentEventId = intent.getStringExtra(LoginActivity.EVENT_ID) ?: ""
 
@@ -30,6 +38,11 @@ class GuestMenuActivity : AppCompatActivity() {
         }
 
         loadEventMenu()
+    }
+
+    private fun initSoundEffect() {
+        SoundEffectPlayer.init(this)
+        SoundEffectPlayer.load(this,R.raw.drink_ready)
     }
 
     private fun loadEventMenu() {
@@ -53,7 +66,6 @@ class GuestMenuActivity : AppCompatActivity() {
                 Toast.makeText(this, "Database Error: ${error.message}", Toast.LENGTH_SHORT).show()
             }
     }
-
     private fun setupRecyclerView(event: Event) {
         val adapter = CocktailMenuAdapter(event.menu) { clickedCocktail ->
             placeOrder(clickedCocktail.name)
@@ -78,10 +90,28 @@ class GuestMenuActivity : AppCompatActivity() {
             status = "pending"
         )
 
+        val orderStartTime = System.currentTimeMillis()
+
         FirebaseManager.placeLiveOrder(newOrder,
             onSuccess = {
-                Toast.makeText(this, "Order sent to the bar! 🍸", Toast.LENGTH_LONG).show()
-            },
+                binding.layoutWaitingOverlay.visibility = android.view.View.VISIBLE
+
+                FirebaseManager.listenToOrderStatus(newOrder.eventId, newOrder.orderId) {
+                    binding.layoutWaitingOverlay.visibility = android.view.View.GONE
+
+                    val waitTimeMillis = System.currentTimeMillis() - orderStartTime
+                    val minutes = (waitTimeMillis / 1000) / 60
+                    val seconds = (waitTimeMillis / 1000) % 60
+                    val timeString = if (minutes > 0) "$minutes min $seconds sec" else "$seconds seconds"
+                    vibrationManager.vibrate(500)
+                    SoundEffectPlayer.play(R.raw.drink_ready)
+
+                    AlertDialog.Builder(this@GuestMenuActivity)
+                        .setTitle("🎉 Drink Ready!")
+                        .setMessage("Hey ${newOrder.guestName}, your ${newOrder.cocktailName} is ready at the bar!\n\n⏱️ Wait time: $timeString")                        .setPositiveButton("GOT IT") { dialog, _ -> dialog.dismiss() }
+                        .setCancelable(false)
+                        .show()
+                }            },
             onFailure = { error ->
                 Toast.makeText(this, "Failed to order: ${error.message}", Toast.LENGTH_SHORT).show()
             }

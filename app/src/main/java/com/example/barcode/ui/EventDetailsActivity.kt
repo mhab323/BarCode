@@ -59,11 +59,13 @@ class EventDetailsActivity : AppCompatActivity() {
 
 
     private fun setUpListeners(event: Event) {
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnBack.setOnClickListener { navigateBack() }
         binding.btnStartLiveEvent.setOnClickListener {
             showQRCodeDialog(event.eventId)
         }
     }
+
+
 
     private fun populateEventDetails(event: Event) {
         binding.tvDetailEventName.text = event.eventName
@@ -120,6 +122,10 @@ class EventDetailsActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    private fun navigateBack() {
+        finish()
     }
 
     private fun shareQRCode(bitmap: android.graphics.Bitmap, eventId: String) {

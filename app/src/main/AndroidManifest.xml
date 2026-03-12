@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BarCode">
+        <activity
+            android:name=".ui.LiveBartenderActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.GuestMenuActivity"
             android:exported="false" />

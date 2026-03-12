@@ -91,18 +91,35 @@ class AdminDashBoardFragment : Fragment() {
     private fun fetchLiveEvents() {
         val currentUserId = FirebaseManager.auth.currentUser?.uid ?: return
 
-       eventListener =  FirebaseManager.listenToBartenderEvents(
+        eventListener =  FirebaseManager.listenToBartenderEvents(
             bartenderId = currentUserId,
             onSuccess = { liveList ->
                 if (_binding == null) return@listenToBartenderEvents
                 allEvents = liveList
                 val currentDate = calendarHelper.selectedDate ?: LocalDate.now()
                 filterEventsByDate(currentDate)
+                findActiveEvent(liveList)
             },
             onFailure = { error ->
                 Toast.makeText(requireContext(), "Failed to load events: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         )
+    }
+
+    private fun findActiveEvent(liveList: List<Event>){
+        val activeLiveEvent = liveList.find { it.status == "live" }
+
+        if (activeLiveEvent != null) {
+            binding.fabLiveEvent.visibility = View.VISIBLE
+
+            binding.fabLiveEvent.setOnClickListener {
+                val intent = Intent(requireContext(), LiveBartenderActivity::class.java)
+                intent.putExtra("EVENT_ID", activeLiveEvent.eventId)
+                startActivity(intent)
+            }
+        } else {
+            binding.fabLiveEvent.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {
