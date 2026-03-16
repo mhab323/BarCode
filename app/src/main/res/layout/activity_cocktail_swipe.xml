@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1e0f27">
+    android:background="@drawable/bg_gradient">
 
     <TextView
         android:id="@+id/tvSwipeCounter"
@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
         android:text="Selected: 0 / 5"
-        android:textColor="#F484FF"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
-            app:backgroundTint="@color/dark_background"
+            app:backgroundTint="#FFFFFF"
             app:tint="#f54336"
             app:fabSize="normal"
             android:contentDescription="Reject Cocktail" />
@@ -47,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:src="@drawable/heart"
-            app:backgroundTint="@color/dark_background"
-            app:tint="@color/main_neon_blue"
+            app:backgroundTint="#FFFFFF"
+            app:tint="#B328C6"
             app:fabSize="normal"
             android:contentDescription="Accept Cocktail" />
     </LinearLayout>
@@ -71,9 +71,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="@color/dark_background"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="24dp"
-        app:cardElevation="8dp">
+        app:cardElevation="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,13 +93,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="24dp"
-                android:background="@drawable/bg_gradient_bottom">
+                android:background="#FFFFFF">
 
                 <TextView
                     android:id="@+id/tvCocktailName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#3B205E"
                     android:textSize="28sp"
                     android:textStyle="bold"
                     android:text="Gin Baladi" />
@@ -113,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textColor="#260089"
+                    android:textColor="#757575"
                     android:text="Description"
                     android:textSize="16sp" />
             </LinearLayout>

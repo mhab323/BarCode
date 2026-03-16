@@ -47,12 +47,10 @@ class GuestMenuActivity : AppCompatActivity() {
         binding.ivGuestSelfie.setOnClickListener {
             takeSelfieLauncher.launch(null)
         }    }
-
     private fun initSoundEffect() {
         SoundEffectPlayer.init(this)
         SoundEffectPlayer.load(this,R.raw.drink_ready)
     }
-
     private fun loadEventMenu() {
         val cleanEventId = currentEventId.trim()
 
@@ -81,7 +79,6 @@ class GuestMenuActivity : AppCompatActivity() {
         binding.rvGuestMenu.layoutManager = LinearLayoutManager(this)
         binding.rvGuestMenu.adapter = adapter
     }
-
     private fun placeOrder(drinkName: String) {
         val guestName = binding.etGuestName.text.toString().trim()
 
@@ -126,7 +123,6 @@ class GuestMenuActivity : AppCompatActivity() {
             }
         )
     }
-
     private fun setupCameraLauncher() {
         takeSelfieLauncher = registerForActivityResult(
             androidx.activity.result.contract.ActivityResultContracts.TakePicturePreview()

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#121212">
+    android:background="@drawable/bg_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LIVE EVENT"
-            android:textColor="@color/main_purple"
-            android:textSize="12sp"
+            android:textColor="#E0FFFFFF"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:letterSpacing="0.1" />
 
@@ -26,14 +26,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Loading Event..."
-            android:textColor="@android:color/white"
-            android:textSize="28sp"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
@@ -41,11 +41,12 @@
                 android:id="@+id/ivGuestSelfie"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/circle_background"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_circle_white"
                 android:src="@android:drawable/ic_menu_camera"
+                app:tint="#B328C6"
                 android:scaleType="centerCrop"
-                app:tint="#AAAAAA"
+                android:elevation="4dp"
                 android:padding="16dp"/>
 
             <EditText
@@ -53,22 +54,24 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:background="#1A1A1A"
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
                 android:hint="Name (e.g. John D.)"
-                android:textColorHint="#AAAAAA"
-                android:textColor="@android:color/white"
-                android:paddingHorizontal="16dp"
+                android:textColorHint="#9E9E9E"
+                android:textColor="#3B205E"
+                android:paddingHorizontal="20dp"
                 android:singleLine="true" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:text="Tap a drink to order:"
-            android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGuestMenu"
@@ -92,7 +95,7 @@
         <ProgressBar
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:indeterminateTint="@color/main_purple" />
+            android:indeterminateTint="#B328C6" />
 
         <TextView
             android:layout_width="wrap_content"

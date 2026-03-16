@@ -3,235 +3,178 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
-
+    android:background="@drawable/bg_gradient">
 
     <RelativeLayout
-    android:id="@+id/layoutTopBar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:padding="20dp">
-
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:src="@android:drawable/ic_menu_revert"
-        app:tint="@android:color/white" />
-
-    <TextView
-        android:id="@+id/tvHeaderTitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/layoutTopBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Create New Event"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:layout_marginTop="50dp"
-        android:textStyle="bold" />
+        android:layout_alignParentTop="true"
+        android:padding="20dp">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="30dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:text="Create New Event"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btnLaunchEvent"
         android:layout_below="@id/layoutTopBar"
-        android:fillViewport="true">
+        android:layout_above="@id/btnLaunchEvent"
+        android:paddingHorizontal="24dp"
+        android:scrollbarStyle="outsideOverlay">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
-
-            <TextView
-                android:id="@+id/tvLabelEventName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EVENT NAME"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
 
             <EditText
                 android:id="@+id/etEventName"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_below="@id/tvLabelEventName"
+                android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_input_dark"
-                android:hint="e.g., Sarah's Wedding"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/gray" />
-
-            <TextView
-                android:id="@+id/tvLabelLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etEventName"
-                android:layout_marginTop="20dp"
-                android:text="LOCATION"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
+                android:hint="Event Name (e.g. Summer Party)"
+                android:paddingHorizontal="20dp"
+                android:textColor="#3B205E"
+                android:textColorHint="#9E9E9E" />
 
             <EditText
                 android:id="@+id/etLocation"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_below="@id/tvLabelLocation"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_input_dark"
-                android:hint="Enter venue address"
-                android:paddingStart="16dp"
-                android:paddingEnd="48dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/gray"
-                />
-            <TextView
-                android:id="@+id/tvLabelGuests"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etLocation"
-                android:layout_marginTop="20dp"
-                android:text="NUMBER OF GUESTS"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
+                android:hint="Location"
+                android:paddingHorizontal="20dp"
+                android:textColor="#3B205E"
+                android:textColorHint="#9E9E9E" />
 
             <EditText
                 android:id="@+id/etGuests"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_below="@id/tvLabelGuests"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_input_dark"
-                android:hint="e.g., 50"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
+                android:hint="Number of Guests"
                 android:inputType="number"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/gray" />
+                android:paddingHorizontal="20dp"
+                android:textColor="#3B205E"
+                android:textColorHint="#9E9E9E" />
 
             <TextView
-                android:id="@+id/tvLabelDateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etGuests"
-                android:layout_marginTop="20dp"
-                android:text="DATE &amp; TIME"
-                android:textColor="@color/gray"
+                android:layout_marginTop="24dp"
+                android:text="SELECT DATE"
+                android:textColor="#E0FFFFFF"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
 
-            <TextView
-                android:id="@+id/btnSetTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/tvLabelDateTime"
-                android:layout_alignParentEnd="true"
-                android:text="🕒 SET TIME"
-                android:textColor="@color/main_purple"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <CalendarView
-                android:id="@+id/calendarView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvLabelDateTime"
                 android:layout_marginTop="8dp"
-                android:background="@color/background_color"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
+                android:padding="8dp">
 
-            <TextView
-                android:id="@+id/tvLabelMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/calendarView"
-                android:layout_marginTop="20dp"
-                android:text="ACTIVE COCKTAIL MENU"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.AppCompat.Light" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSetTime"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
+                android:elevation="4dp"
+                android:text="Set Event Time"
+                android:textColor="#B328C6"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:id="@+id/btnBuildMenu"
+                android:id="@+id/btnOpenMenuArrow"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_below="@id/tvLabelMenu"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_input_dark"
-                android:clickable="true"
-                android:focusable="true">
-
-                <ImageView
-                    android:id="@+id/iconSwipe"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/cocktail"
-                    app:tint="@color/main_purple" />
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
+                android:paddingHorizontal="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/iconSwipe"
-                    android:text="Click to Build Menu"
-                    android:textColor="@android:color/white"
+                    android:text="Select Cocktail Menu"
+                    android:textColor="#B328C6"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <ImageButton
-                    android:id="@+id/btnOpenMenuArrow"
+                <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="16dp"
-                    android:background="#121212"
-                    android:src="@drawable/right_arr"
-                    android:scaleType="centerCrop"
-                    app:tint="@android:color/white" />
+                    android:src="@android:drawable/ic_media_next"
+                    app:tint="#B328C6" />
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tvLabelBilling"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btnBuildMenu"
-                android:layout_marginTop="20dp"
-                android:text="BILLING CONFIGURATION"
-                android:textColor="@color/gray"
+                android:layout_marginTop="24dp"
+                android:text="BILLING TYPE"
+                android:textColor="#E0FFFFFF"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
 
             <RelativeLayout
-                android:id="@+id/layoutBillingToggle"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_below="@id/tvLabelBilling"
+                android:layout_height="50dp"
                 android:layout_marginTop="8dp"
-                android:background="#1A1A1A">
+                android:background="@drawable/bg_rounded_white"
+                android:elevation="4dp"
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/btnOpenBar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/centerGuideline"
-                    android:background="@color/main_purple"
                     android:gravity="center"
                     android:text="Open Bar"
-                    android:textColor="@android:color/white"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <View
@@ -242,17 +185,15 @@
 
                 <TextView
                     android:id="@+id/btnPayPerDrink"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@+id/centerGuideline"
                     android:gravity="center"
                     android:text="Pay per Drink"
-                    android:textColor="@color/gray"
+                    android:textColor="#9E9E9E"
                     android:textStyle="bold" />
             </RelativeLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
     <Button
@@ -260,10 +201,12 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/main_purple"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:elevation="8dp"
         android:text="LAUNCH EVENT"
-        android:textColor="@android:color/white"
+        android:textColor="#B328C6"
         android:textSize="16sp"
         android:textStyle="bold" />
 

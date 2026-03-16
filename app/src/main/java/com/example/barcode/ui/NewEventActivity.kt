@@ -90,15 +90,19 @@ class NewEventActivity : AppCompatActivity() {
 
     private fun updateBillingToggleUI() {
         if (isOpenBarSelected) {
-            binding.btnOpenBar.setBackgroundColor(Color.parseColor("#B026FF"))
+            binding.btnOpenBar.setBackgroundResource(com.example.barcode.R.drawable.bg_rounded_white)
+            binding.btnOpenBar.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#B328C6"))
             binding.btnOpenBar.setTextColor(Color.WHITE)
-            binding.btnPayPerDrink.setBackgroundColor(Color.TRANSPARENT)
-            binding.btnPayPerDrink.setTextColor(Color.parseColor("#AAAAAA"))
+
+            binding.btnPayPerDrink.background = null
+            binding.btnPayPerDrink.setTextColor(Color.parseColor("#9E9E9E"))
         } else {
-            binding.btnPayPerDrink.setBackgroundColor(Color.parseColor("#B026FF"))
+            binding.btnPayPerDrink.setBackgroundResource(com.example.barcode.R.drawable.bg_rounded_white)
+            binding.btnPayPerDrink.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#B328C6"))
             binding.btnPayPerDrink.setTextColor(Color.WHITE)
-            binding.btnOpenBar.setBackgroundColor(Color.TRANSPARENT)
-            binding.btnOpenBar.setTextColor(Color.parseColor("#AAAAAA"))
+
+            binding.btnOpenBar.background = null
+            binding.btnOpenBar.setTextColor(Color.parseColor("#9E9E9E"))
         }
     }
     private fun selectOpenBar() {

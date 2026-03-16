@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_background"
+    android:background="@drawable/bg_gradient"
     android:padding="24dp">
 
     <LinearLayout
@@ -15,52 +15,50 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo_transparent"
-            />
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:text="Event Management &amp; Mixology"
-            android:textColor="#AAAAAA"
-            android:textSize="16sp" />
+            android:src="@drawable/logo_transparent" /> <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Event Management &amp; Mixology"
+        android:textColor="#E0FFFFFF"
+        android:textSize="16sp" />
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/bg_input_dark"
+            android:background="@drawable/bg_rounded_white"
+            android:elevation="4dp"
             android:hint="Email Address"
             android:inputType="textEmailAddress"
-            android:paddingHorizontal="16dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@color/gray" />
+            android:paddingHorizontal="20dp"
+            android:textColor="#3B205E"
+            android:textColorHint="#9E9E9E" />
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_input_dark"
+            android:background="@drawable/bg_rounded_white"
+            android:elevation="4dp"
             android:hint="Password"
             android:inputType="textPassword"
-            android:paddingHorizontal="16dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@color/gray" />
+            android:paddingHorizontal="20dp"
+            android:textColor="#3B205E"
+            android:textColorHint="#9E9E9E" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:layout_marginTop="32dp"
-            android:backgroundTint="@color/main_purple"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="8dp"
             android:text="LOG IN"
-            android:textColor="@android:color/white"
+            android:textColor="#B328C6"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -69,9 +67,10 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/main_neon_blue"
+            android:backgroundTint="#3B205E"
+            android:elevation="8dp"
             android:text="GUEST: SCAN EVENT QR"
-            android:textColor="@color/main_purple"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -86,14 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don't have an account? "
-                android:textColor="#AAAAAA" />
+                android:textColor="#E0FFFFFF" />
 
             <TextView
                 android:id="@+id/tvSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
-                android:textColor="@color/main_purple"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
