@@ -17,9 +17,10 @@ import com.example.barcode.utils.VibrationManager
 class GuestMenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGuestMenuBinding
-
     private lateinit var vibrationManager: VibrationManager
     private var currentEventId: String = ""
+    private var uploadedSelfieUrl: String = ""
+    private lateinit var takeSelfieLauncher: androidx.activity.result.ActivityResultLauncher<Void?>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,14 @@ class GuestMenuActivity : AppCompatActivity() {
         }
 
         loadEventMenu()
+        setupCameraLauncher()
+        setUpListener()
     }
+
+    private fun setUpListener() {
+        binding.ivGuestSelfie.setOnClickListener {
+            takeSelfieLauncher.launch(null)
+        }    }
 
     private fun initSoundEffect() {
         SoundEffectPlayer.init(this)
@@ -87,7 +95,8 @@ class GuestMenuActivity : AppCompatActivity() {
             guestName = guestName,
             cocktailName = drinkName,
             timestamp = System.currentTimeMillis(),
-            status = "pending"
+            status = "pending",
+            guestImageUrl = uploadedSelfieUrl
         )
 
         val orderStartTime = System.currentTimeMillis()
@@ -116,5 +125,31 @@ class GuestMenuActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to order: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         )
+    }
+
+    private fun setupCameraLauncher() {
+        takeSelfieLauncher = registerForActivityResult(
+            androidx.activity.result.contract.ActivityResultContracts.TakePicturePreview()
+        ) { bitmap: android.graphics.Bitmap? ->
+            if (bitmap != null) {
+                com.bumptech.glide.Glide.with(this).load(bitmap).circleCrop().into(binding.ivGuestSelfie)
+                binding.ivGuestSelfie.setPadding(0, 0, 0, 0)
+                binding.ivGuestSelfie.imageTintList = null
+
+                binding.layoutWaitingOverlay.visibility = android.view.View.VISIBLE
+
+                FirebaseManager.uploadGuestSelfie(bitmap,
+                    onSuccess = { url ->
+                        uploadedSelfieUrl = url
+                        binding.layoutWaitingOverlay.visibility = android.view.View.GONE
+                        Toast.makeText(this, "Selfie attached!", Toast.LENGTH_SHORT).show()
+                    },
+                    onFailure = { error ->
+                        binding.layoutWaitingOverlay.visibility = android.view.View.GONE
+                     Toast.makeText(this, "Upload failed", Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }
+        }
     }
 }

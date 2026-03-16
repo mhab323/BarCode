@@ -144,7 +144,7 @@ class LoginActivity : AppCompatActivity() {
             onFailure = { error ->
                 binding.btnLogin.isEnabled = true
                 binding.btnLogin.text = "LOG IN"
-            }
+                }
         )
     }
 }

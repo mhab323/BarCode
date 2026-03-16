@@ -24,6 +24,19 @@ class LiveOrderAdapter(
         holder.binding.tvOrderCocktailName.text = order.cocktailName
         holder.binding.tvOrderGuestName.text = "For: ${order.guestName}"
 
+        if (order.guestImageUrl.isNotEmpty()) {
+            holder.binding.ivGuestPhoto.setPadding(0, 0, 0, 0)
+            holder.binding.ivGuestPhoto.imageTintList = null
+
+            com.bumptech.glide.Glide.with(holder.itemView.context)
+                .load(order.guestImageUrl)
+                .circleCrop()
+                .into(holder.binding.ivGuestPhoto)
+        } else {
+            holder.binding.ivGuestPhoto.setPadding(12, 12, 12, 12)
+            holder.binding.ivGuestPhoto.setImageResource(android.R.drawable.ic_menu_camera)
+        }
+
         holder.binding.btnMarkDone.setOnClickListener {
             onDoneClick(order)
         }

@@ -7,5 +7,6 @@ data class Order(
     var guestName: String = "",
     var cocktailName: String = "",
     var timestamp: Long = 0L,
-    var status: String = "pending"
+    var status: String = "pending",
+    var guestImageUrl: String = ""
 )

@@ -182,6 +182,23 @@ object FirebaseManager {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
+    fun uploadGuestSelfie(bitmap: android.graphics.Bitmap, onSuccess: (String) -> Unit, onFailure: (Exception) -> Unit) {
+        val baos = java.io.ByteArrayOutputStream()
+        bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 80, baos)
+        val data = baos.toByteArray()
+
+        val filename = java.util.UUID.randomUUID().toString() + ".jpg"
+        val storageRef = com.google.firebase.storage.FirebaseStorage.getInstance().reference.child("guest_selfies/$filename")
+
+        storageRef.putBytes(data)
+            .addOnSuccessListener {
+                storageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    onSuccess(downloadUri.toString())
+                }.addOnFailureListener { e -> onFailure(e) }
+            }
+            .addOnFailureListener { e -> onFailure(e) }
+    }
+
 
     //######################################################################################
     //Real time database
