@@ -24,7 +24,7 @@ class EventAdapter(private var events: List<Event> = emptyList()) : RecyclerView
         val event = events[position]
 
         holder.binding.tvCardEventName.text = event.eventName
-        holder.binding.tvCardLocationTime.text = "📍${event.location} • ${event.dateString}"
+        holder.binding.tvCardLocationTime.text = "📍${event.location} • ${event.dateString} at ${event.timeString}"
         holder.binding.tvCardBilling.text = event.billingType
         holder.binding.tvCardGuests.text = "👥 ${event.numOfGuests} Guests"
         holder.binding.tvCardMenuSize.text = "${event.menu.size} Drinks Menu"

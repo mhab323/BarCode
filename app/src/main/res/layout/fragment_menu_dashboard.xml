@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_background"
+    android:background="@drawable/bg_gradient"
     tools:context=".ui.MenuDashboardFragment">
 
     <TextView
@@ -13,11 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Cocktail Menu"
-        android:textColor="@android:color/white"
-        android:textSize="28sp"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="No cocktails yet!"
-        android:textColor="@color/main_purple"
-        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
@@ -48,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:text="Tap the + button to add your first drink."
-        android:textColor="@android:color/darker_gray"
+        android:textColor="#E0FFFFFF"
         android:textSize="16sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -60,9 +60,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/main_purple"
-        app:tint="@android:color/white" />
-
-
+        app:backgroundTint="#FFFFFF"
+        app:tint="#B328C6"
+        app:elevation="8dp"/>
 
 </RelativeLayout>

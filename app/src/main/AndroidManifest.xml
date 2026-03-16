@@ -29,10 +29,7 @@
             android:name=".ui.GuestMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SettingsFragment"
-            android:exported="false" />
-        <activity
-            android:name=".ui.com.example.barcode.ui.AddCocktailActivity"
+            android:name=".ui.AddCocktailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.AdminHostActivity"

@@ -109,32 +109,20 @@ class AdminDashBoardFragment : Fragment() {
         )
     }
     private fun findActiveEvent(liveList: List<Event>){
-        val activeLiveEvent = liveList.find { it.status == "live" }
+        val liveEvent = allEvents.find { it.status == "live" }
 
-        if (activeLiveEvent != null) {
-
-            if (isEventExpired(activeLiveEvent)) {
-                binding.fabLiveEvent.visibility = View.GONE
-                return
-            }
+        if (liveEvent != null) {
             binding.fabLiveEvent.visibility = View.VISIBLE
             binding.fabLiveEvent.setOnClickListener {
                 val intent = Intent(requireContext(), LiveBartenderActivity::class.java)
-                intent.putExtra("EVENT_ID", activeLiveEvent.eventId)
+                intent.putExtra("EVENT_ID", liveEvent.eventId)
                 startActivity(intent)
             }
         } else {
             binding.fabLiveEvent.visibility = View.GONE
         }
     }
-    private fun isEventExpired(event: Event): Boolean {
-        val fiveHoursInMillis = 18_000_000L
 
-        val startTime = if (event.scheduledTimeMillis > 0) event.scheduledTimeMillis else event.timestamp
-        val currentTime = System.currentTimeMillis()
-
-        return (currentTime - startTime) >= fiveHoursInMillis
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         eventListener?.remove()

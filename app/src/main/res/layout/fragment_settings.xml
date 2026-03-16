@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="@drawable/bg_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="SETTINGS"
-            android:textColor="@color/main_purple"
-            android:textSize="10sp"
+            android:textColor="#E0FFFFFF"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:letterSpacing="0.1" />
 
@@ -27,30 +27,30 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="32dp"
             android:text="Your Profile"
-            android:textColor="@android:color/white"
+            android:textColor="#FFFFFF"
             android:textSize="32sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="#1A1A1A"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="32dp">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:id="@+id/ivProfilePhoto"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="16dp"
-                    android:src="@drawable/ic_launcher_foreground"
-                    app:tint="@color/main_purple" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo_transparent" />
 
                 <TextView
                     android:id="@+id/tvProfileName"
@@ -58,8 +58,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="User Name"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
+                    android:textColor="#3B205E"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -69,20 +69,21 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
                     android:text="user@email.com"
-                    android:textColor="#AAAAAA"
-                    android:textSize="14sp" />
+                    android:textColor="#757575"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tvProfileRole"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="12dp"
-                    android:background="#33B026FF"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded_white"
+                    android:elevation="2dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
                     android:text="BARTENDER"
-                    android:textColor="@color/main_purple"
+                    android:textColor="#B328C6"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -97,9 +98,11 @@
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#FF3B30"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="8dp"
             android:text="LOG OUT"
-            android:textColor="@android:color/white"
+            android:textColor="#FF3B30"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>

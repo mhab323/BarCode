@@ -280,7 +280,6 @@ class NewEventActivity : AppCompatActivity() {
 
         val timePickerDialog = TimePickerDialog(
             this,
-            R.style.Theme_Dialog,
             { _, selectedHour, selectedMinute ->
                 val isPM = selectedHour >= 12
                 val displayHour = if (selectedHour % 12 == 0) 12 else selectedHour % 12
@@ -290,14 +289,14 @@ class NewEventActivity : AppCompatActivity() {
                     format(Locale.getDefault(), "%02d:%02d %s", displayHour, selectedMinute, amPm)
 
                 binding.btnSetTime.text = formattedTime
-                binding.btnSetTime.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+                binding.btnSetTime.setTextColor(Color.parseColor("#B328C6"))
             },
             currentHour,
             currentMinute,
-            true
+            false
         )
         timePickerDialog.show()
-
     }
 
     private fun generateJoinCode(): String {

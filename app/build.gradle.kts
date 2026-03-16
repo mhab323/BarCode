@@ -83,5 +83,6 @@ dependencies {
     implementation("com.kizitonwose.calendar:view:2.5.0")
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
 }

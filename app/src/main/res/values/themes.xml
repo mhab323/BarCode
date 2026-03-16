@@ -3,4 +3,8 @@
 
     <style name="Theme.BarCode" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
+    <style name="CustomCalendarTheme" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#B328C6</item>
+        <item name="colorPrimary">#B328C6</item>
+    </style>
 </resources>

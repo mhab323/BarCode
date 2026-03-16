@@ -30,8 +30,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLiveOrders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnEndEvent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="@color/main_purple"
+        android:elevation="4dp"
+        android:text="END EVENT"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
 
 </LinearLayout>

@@ -29,6 +29,32 @@ class LiveBartenderActivity : AppCompatActivity() {
 
         setupRecyclerView()
         startListeningForOrders()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding.btnEndEvent.setOnClickListener {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("End Event")
+                .setMessage("Are you sure you want to end this event? This will stop all incoming orders.")
+                .setPositiveButton("End Event") { _, _ ->
+                    endLiveEvent()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+    }
+
+    private fun endLiveEvent() {
+        FirebaseManager.db.collection("events").document(currentEventId)
+            .update("status", "completed")
+            .addOnSuccessListener {
+                Toast.makeText(this, "Event Ended Successfully", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to end event: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun setupRecyclerView() {

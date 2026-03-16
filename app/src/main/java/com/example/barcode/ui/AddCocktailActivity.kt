@@ -1,4 +1,4 @@
-package com.example.barcode.ui.com.example.barcode.ui
+package com.example.barcode.ui
 
 import android.net.Uri
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.barcode.databinding.ActivityAddCocktailBinding
 import com.example.barcode.firebase.FirebaseManager
 import com.example.barcode.model.Cocktail
@@ -21,7 +22,7 @@ class AddCocktailActivity : AppCompatActivity() {
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
             selectedImageUri = uri
-            com.bumptech.glide.Glide.with(this)
+            Glide.with(this)
                 .load(uri)
                 .centerCrop()
                 .into(binding.ivCocktailImage)
@@ -148,7 +149,7 @@ class AddCocktailActivity : AppCompatActivity() {
             binding.etCocktailDesc.setText(intent.getStringExtra("COCKTAIL_DESC"))
 
             if (existingImageUrl.isNotEmpty()) {
-                com.bumptech.glide.Glide.with(this)
+                Glide.with(this)
                     .load(existingImageUrl)
                     .centerCrop()
                     .into(binding.ivCocktailImage)

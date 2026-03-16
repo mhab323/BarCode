@@ -14,6 +14,7 @@ import com.kizitonwose.calendar.view.ViewContainer
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import androidx.core.graphics.toColorInt
 
 class CalendarHelper(
     private val context: Context,
@@ -85,13 +86,13 @@ class CalendarHelper(
 
                     if (data.date == selectedDate) {
                         container.textView.setBackgroundResource(R.drawable.bg_circle_purple)
-                        container.textView.setTextColor(ContextCompat.getColor(context, R.color.main_purple))
+                        container.textView.setTextColor(android.graphics.Color.WHITE)
                     } else if (data.date == LocalDate.now()) {
                         container.textView.background = null
-                        container.textView.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+                        container.textView.setTextColor("#3B205E".toColorInt())
                     } else {
                         container.textView.background = null
-                        container.textView.setTextColor(ContextCompat.getColor(context, android.R.color.white))
+                        container.textView.setTextColor("#3B205E".toColorInt())
                     }
                 } else {
                     container.textView.visibility = View.INVISIBLE

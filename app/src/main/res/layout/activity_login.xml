@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
@@ -15,14 +16,16 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo_transparent" /> <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:text="Event Management &amp; Mixology"
-        android:textColor="#E0FFFFFF"
-        android:textSize="16sp" />
+            android:src="@drawable/logo_transparent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Event Management &amp; Mixology"
+            android:textColor="#E0FFFFFF"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -61,6 +64,26 @@
             android:textColor="#B328C6"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGoogleSignIn"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Sign in with Google"
+            android:textAllCaps="false"
+            android:textColor="#757575"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:elevation="4dp"
+            app:icon="@drawable/google"
+            app:iconGravity="textStart"
+            app:iconPadding="16dp"
+            app:iconSize="24dp"
+            app:iconTint="@null" />
 
         <Button
             android:id="@+id/btnGuestScan"

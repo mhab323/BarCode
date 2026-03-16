@@ -14,9 +14,7 @@ import com.example.barcode.databinding.FragmentMenuDashboardBinding
 import com.example.barcode.firebase.FirebaseManager
 import com.example.barcode.model.Cocktail
 import androidx.appcompat.app.AlertDialog
-import com.example.barcode.R
 import com.example.barcode.databinding.DialogCocktailPreviewBinding
-import com.example.barcode.ui.com.example.barcode.ui.AddCocktailActivity
 
 
 class MenuDashboardFragment : Fragment() {

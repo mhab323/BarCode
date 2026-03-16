@@ -107,7 +107,7 @@
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/Theme.AppCompat.Light" />
+                    android:theme="@style/CustomCalendarTheme" />
             </LinearLayout>
 
             <Button
@@ -145,7 +145,7 @@
                     android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@android:drawable/ic_media_next"
+                    android:src="@drawable/right_arr"
                     app:tint="#B328C6" />
             </RelativeLayout>
 
@@ -172,6 +172,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/centerGuideline"
+                    android:background="@drawable/bg_rounded_white"
+                    android:backgroundTint="#B328C6"
                     android:gravity="center"
                     android:text="Open Bar"
                     android:textColor="#FFFFFF"

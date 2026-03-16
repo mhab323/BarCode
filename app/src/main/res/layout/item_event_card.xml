@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
-    app:cardBackgroundColor="@color/dark_background"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginVertical="10dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event Name"
-            android:textColor="@color/main_neon_blue"
+            android:textColor="#3B205E"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Location • Time"
-            android:textColor="#CCCCCC"
+            android:textColor="#757575"
             android:textSize="14sp" />
 
         <TextView
@@ -39,24 +39,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="👥 0 Guests"
-            android:textColor="#AAAAAA"
+            android:textColor="#757575"
             android:textSize="14sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/tvCardBilling"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:background="#33B026FF"
+                android:background="@drawable/bg_rounded_white"
+                android:backgroundTint="#B328C6"
+                android:elevation="2dp"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
                 android:text="Open Bar"
-                android:textColor="#B026FF"
+                android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -67,7 +69,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:text="0 Drinks Menu"
-                android:textColor="#AAAAAA"
+                android:textColor="#B328C6"
+                android:textStyle="bold"
                 android:textSize="12sp" />
         </RelativeLayout>
     </LinearLayout>

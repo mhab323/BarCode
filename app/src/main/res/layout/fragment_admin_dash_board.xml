@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="@drawable/bg_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,8 +33,8 @@
                         android:layout_height="wrap_content"
                         android:letterSpacing="0.1"
                         android:text="MANAGEMENT"
-                        android:textColor="@color/main_purple"
-                        android:textSize="10sp"
+                        android:textColor="#E0FFFFFF"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -42,8 +42,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="DASHBOARD"
-                        android:textColor="@android:color/white"
-                        android:textSize="22sp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -57,9 +57,9 @@
                     android:layout_marginEnd="4dp"
                     android:contentDescription="Create New Event"
                     android:src="@android:drawable/ic_input_add"
-                    app:backgroundTint="@color/main_purple"
-                    app:elevation="4dp"
-                    app:tint="@android:color/white" />
+                    app:backgroundTint="#FFFFFF"
+                    app:elevation="8dp"
+                    app:tint="#B328C6" />
 
             </RelativeLayout>
 
@@ -68,14 +68,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="#1A1A1A"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp">
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tvShareCodeLabel"
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="Your Bartender Code:"
-                        android:textColor="#AAAAAA"
+                        android:textColor="#757575"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -94,21 +94,22 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="------"
-                        android:textColor="@color/main_purple"
-                        android:textSize="18sp"
+                        android:textColor="#B328C6"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.1"
                         android:textIsSelectable="true" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="24dp"
-                app:cardBackgroundColor="#1A1A1A"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="24dp"
-                app:cardElevation="0dp">
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,7 +132,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/left"
                             android:scaleType="centerInside"
-                            app:tint="@android:color/white" />
+                            app:tint="#3B205E" />
 
                         <TextView
                             android:id="@+id/tvMonthHeader"
@@ -139,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:text="OCTOBER 2023"
-                            android:textColor="@android:color/white"
+                            android:textColor="#3B205E"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:letterSpacing="0.1" />
@@ -153,7 +154,7 @@
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/next"
                             android:scaleType="centerInside"
-                            app:tint="@android:color/white" />
+                            app:tint="#3B205E" />
                     </RelativeLayout>
 
                     <com.kizitonwose.calendar.view.CalendarView
@@ -177,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Today's Schedule"
-                    android:textColor="@android:color/white"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -187,11 +188,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:background="#33B026FF"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="6dp"
+                    android:background="@drawable/bg_rounded_white"
+                    android:elevation="2dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
                     android:text="0 EVENTS"
-                    android:textColor="@color/main_purple"
+                    android:textColor="#B328C6"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -207,17 +209,18 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabLiveEvent"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
         android:layout_margin="26dp"
+        android:layout_marginLeft="10dp"
         android:text="LIVE"
+        android:textStyle="bold"
         android:gravity="center"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#E53935"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#FF3B30"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:elevation="12dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

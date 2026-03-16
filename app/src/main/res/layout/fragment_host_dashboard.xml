@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="@drawable/bg_gradient">
 
     <TextView
         android:id="@+id/tvScreenTitle"
@@ -12,9 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:text="My Events"
-        android:textColor="@color/main_purple"
+        android:textColor="#FFFFFF"
         android:textSize="32sp"
         android:textStyle="bold" />
 
@@ -36,10 +36,10 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/cocktail"
-            app:tint="@color/main_purple"
+            app:tint="#FFFFFF"
             android:contentDescription="Empty state cocktail icon" />
 
         <TextView
@@ -47,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="No events yet. Tap + to start!"
-            android:textColor="#AAAAAA" />
+            android:textColor="#E0FFFFFF"
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -55,14 +56,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="18dp"
+        android:layout_marginEnd="24dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="24dp"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/main_purple"
-        app:tint="@android:color/white"
+        app:backgroundTint="#FFFFFF"
+        app:tint="#B328C6"
+        app:elevation="8dp"
         android:contentDescription="Create New Event" />
-
-
 
 </RelativeLayout>

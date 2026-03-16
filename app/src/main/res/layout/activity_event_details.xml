@@ -42,19 +42,40 @@
             android:paddingHorizontal="24dp"
             android:paddingBottom="24dp">
 
+            <TextView
+                android:id="@+id/tvDetailEventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Name"
+                android:textColor="#FFFFFF"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDetailInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Location / Time / Guests"
+                android:textColor="#E0FFFFFF"
+                android:textSize="16sp"
+                android:lineSpacingExtra="6dp"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="24dp"
-                android:background="#4DFFFFFF" /> <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="SELECTED COCKTAIL MENU"
-            android:textColor="#E0FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.1" />
+                android:background="#4DFFFFFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="SELECTED COCKTAIL MENU"
+                android:textColor="#E0FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCocktailMenu"
