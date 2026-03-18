@@ -78,8 +78,6 @@ class CocktailSwipeActivity : AppCompatActivity() {
 
         binding.tvSwipeCounter.text = "Selected: ${selectedMenu.size} / $MAX_COCKTAILS"
 
-        Toast.makeText(this, "Added ${currentCocktail.name}", Toast.LENGTH_SHORT).show()
-
         if (selectedMenu.size >= MAX_COCKTAILS) {
             finishWithSelection()
         } else {

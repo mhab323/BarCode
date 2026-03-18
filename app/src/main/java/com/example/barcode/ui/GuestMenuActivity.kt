@@ -1,5 +1,6 @@
 package com.example.barcode.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -42,7 +43,6 @@ class GuestMenuActivity : AppCompatActivity() {
         setupCameraLauncher()
         setUpListener()
     }
-
     private fun setUpListener() {
         binding.ivGuestSelfie.setOnClickListener {
             takeSelfieLauncher.launch(null)
@@ -79,6 +79,7 @@ class GuestMenuActivity : AppCompatActivity() {
         binding.rvGuestMenu.layoutManager = LinearLayoutManager(this)
         binding.rvGuestMenu.adapter = adapter
     }
+    @SuppressLint("SetTextI18n")
     private fun placeOrder(drinkName: String) {
         val guestName = binding.etGuestName.text.toString().trim()
 
@@ -101,14 +102,13 @@ class GuestMenuActivity : AppCompatActivity() {
         FirebaseManager.placeLiveOrder(newOrder,
             onSuccess = {
                 binding.layoutWaitingOverlay.visibility = android.view.View.VISIBLE
+                binding.tvWaitingText.text = "The bartender is preparing your drink...\nPlease wait!"
 
                 FirebaseManager.listenToOrderStatus(newOrder.eventId, newOrder.orderId) {
                     binding.layoutWaitingOverlay.visibility = android.view.View.GONE
 
-                    val waitTimeMillis = System.currentTimeMillis() - orderStartTime
-                    val minutes = (waitTimeMillis / 1000) / 60
-                    val seconds = (waitTimeMillis / 1000) % 60
-                    val timeString = if (minutes > 0) "$minutes min $seconds sec" else "$seconds seconds"
+                    val timeString = getWaitingTime(orderStartTime)
+
                     vibrationManager.vibrate(500)
                     SoundEffectPlayer.play(R.raw.drink_ready)
 
@@ -123,6 +123,16 @@ class GuestMenuActivity : AppCompatActivity() {
             }
         )
     }
+
+    private fun getWaitingTime(orderStartTime: Long): String
+    {
+        val waitTimeMillis = System.currentTimeMillis() - orderStartTime
+        val minutes = (waitTimeMillis / 1000) / 60
+        val seconds = (waitTimeMillis / 1000) % 60
+        val timeString = if (minutes > 0) "$minutes min $seconds sec" else "$seconds seconds"
+        return timeString
+    }
+    @SuppressLint("SetTextI18n")
     private fun setupCameraLauncher() {
         takeSelfieLauncher = registerForActivityResult(
             androidx.activity.result.contract.ActivityResultContracts.TakePicturePreview()
@@ -133,6 +143,8 @@ class GuestMenuActivity : AppCompatActivity() {
                 binding.ivGuestSelfie.imageTintList = null
 
                 binding.layoutWaitingOverlay.visibility = android.view.View.VISIBLE
+                binding.tvWaitingText.text = "Uploading Selfie..."
+
 
                 FirebaseManager.uploadGuestSelfie(bitmap,
                     onSuccess = { url ->

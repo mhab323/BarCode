@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Location • Time"
-            android:textColor="#757575"
+            android:textColor="#121212"
             android:textSize="14sp" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="👥 0 Guests"
-            android:textColor="#757575"
+            android:textColor="#121212"
             android:textSize="14sp" />
 
         <RelativeLayout

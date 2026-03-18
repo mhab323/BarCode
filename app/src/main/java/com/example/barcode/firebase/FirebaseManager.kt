@@ -198,12 +198,6 @@ object FirebaseManager {
             }
             .addOnFailureListener { e -> onFailure(e) }
     }
-
-
-    //######################################################################################
-    //Real time database
-    //######################################################################################
-
     fun placeLiveOrder(order: Order, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         val rtdb =
             com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference

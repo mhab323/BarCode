@@ -18,6 +18,7 @@ import com.example.barcode.firebase.FirebaseManager
 import com.example.barcode.model.Cocktail
 import java.lang.String.format
 import java.util.Locale
+import androidx.core.graphics.toColorInt
 
 class NewEventActivity : AppCompatActivity() {
 
@@ -290,7 +291,7 @@ class NewEventActivity : AppCompatActivity() {
 
                 binding.btnSetTime.text = formattedTime
 
-                binding.btnSetTime.setTextColor(Color.parseColor("#B328C6"))
+                binding.btnSetTime.setTextColor("#B328C6".toColorInt())
             },
             currentHour,
             currentMinute,

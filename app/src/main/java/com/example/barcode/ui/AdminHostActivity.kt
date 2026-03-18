@@ -78,6 +78,10 @@ class AdminHostActivity : AppCompatActivity() {
                     replaceFragment(SettingsFragment())
                     true
                 }
+                R.id.nav_admin_insights -> {
+                    replaceFragment(InsightsFragment())
+                    true
+                }
                 else -> false
             }
         }
