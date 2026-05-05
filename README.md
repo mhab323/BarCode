@@ -67,6 +67,8 @@ Hosts create a new event, pick a date on the calendar, set time and billing type
 <p align="center">
   <img src="screenshots/07_host_dashboard.png" width="240" />
   <img src="screenshots/08_new_event.png" width="240" />
+</p>
+<p align="center">
   <img src="screenshots/09_swipe_cocktails.png" width="240" />
   <img src="screenshots/09_swipe_cocktails2.png" width="240" />
 </p>
