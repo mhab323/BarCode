@@ -1,4 +1,7 @@
-# BarCode
+<h1>
+  <img src="app/src/main/res/drawable/logo_transparent.png" width="40" align="left" />
+  &nbsp;BarCode
+</h1>
 
 An Android app that powers a **QR-based mobile bar experience** for events — guests scan an event QR, browse a bartender-curated cocktail menu, and place live drink orders that flow in real-time to a bartender's order screen.
 
