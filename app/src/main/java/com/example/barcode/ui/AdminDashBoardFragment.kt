@@ -48,6 +48,7 @@ class AdminDashBoardFragment : Fragment() {
     private fun setupRecyclerView() {
         eventAdapter = EventAdapter()
         binding.rvAdminEvents.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
         binding.rvAdminEvents.adapter = eventAdapter
     }
     @SuppressLint("SetTextI18n")
