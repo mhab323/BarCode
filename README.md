@@ -1,5 +1,5 @@
 <h1>
-  <img src="app/src/main/res/drawable/logo_transparent.png" width="40" align="left" />
+  <img src="app/src/main/res/drawable/logo_transparent.png" width="60" align="left" />
   &nbsp;BarCode
 </h1>
 
