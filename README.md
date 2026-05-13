@@ -3,6 +3,8 @@
   &nbsp;BarCode
 </h1>
 
+
+
 An Android app that powers a **QR-based mobile bar experience** for events — guests scan an event QR, browse a bartender-curated cocktail menu, and place live drink orders that flow in real-time to a bartender's order screen.
 
 Built with Kotlin and Firebase, BarCode covers the full event lifecycle: bartenders publish their personal cocktail menu, hosts plan events and pick which drinks to serve via a swipe-to-choose UI, guests order from their phones, and bartenders fulfill orders live with instant guest notifications.
