@@ -1,5 +1,6 @@
 package com.example.barcode.auth
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -28,7 +29,6 @@ class SignUpActivity : AppCompatActivity() {
 
         setupListeners()
     }
-
     private fun setupListeners() {
         binding.tvBackToLogin.setOnClickListener {
             finish()
@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity() {
             registerUser()
         }
     }
-
+    @SuppressLint("SetTextI18n")
     private fun registerUser() {
         val name = binding.etSignUpName.text.toString().trim()
         val email = binding.etSignUpEmail.text.toString().trim()
@@ -68,8 +68,8 @@ class SignUpActivity : AppCompatActivity() {
 
 
     }
-
-    private fun createAccount(name :String, email :String,password :String,role :String) {
+    @SuppressLint("SetTextI18n")
+    private fun createAccount(name :String, email :String, password :String, role :String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener { authResult ->
                 val userId = authResult.user?.uid
@@ -84,6 +84,7 @@ class SignUpActivity : AppCompatActivity() {
             }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun saveUserToFirestore(userId: String, name: String, email: String, role: String) {
         val userMap = hashMapOf(
             "uid" to userId,
@@ -94,7 +95,6 @@ class SignUpActivity : AppCompatActivity() {
 
         db.collection("users").document(userId).set(userMap)
             .addOnSuccessListener {
-
                 com.example.barcode.utils.UserManager.currentUser = com.example.barcode.model.User(
                     uid = userId,
                     name = name,
@@ -104,21 +104,20 @@ class SignUpActivity : AppCompatActivity() {
                 )
 
                 Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
-
-                val intent = Intent(this, AdminHostActivity::class.java)
-                if (role == "host") {
-                    intent.putExtra(AdminHostActivity.USER_ROLE, "HOST")
-                } else {
-                    intent.putExtra(AdminHostActivity.USER_ROLE, "ADMIN")
-                }
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
+                goToRoleDashboard(role)
             }
             .addOnFailureListener { e ->
                 binding.btnRegister.isEnabled = true
                 binding.btnRegister.text = "SIGN UP"
                 Toast.makeText(this, "Database Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun goToRoleDashboard(role: String) {
+        val intent = Intent(this, AdminHostActivity::class.java)
+        intent.putExtra(AdminHostActivity.USER_ROLE, if (role == "host") "HOST" else "ADMIN")
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

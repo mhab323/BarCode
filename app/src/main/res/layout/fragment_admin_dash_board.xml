@@ -207,20 +207,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/fabLiveEvent"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:layout_margin="26dp"
-        android:layout_marginLeft="10dp"
-        android:text="LIVE"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FF3B30"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-        app:elevation="12dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:contentDescription="Live event indicator"
+        android:clickable="true"
+        android:focusable="true"
+        app:lottie_rawRes="@raw/live_pulse"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
 
 </RelativeLayout>

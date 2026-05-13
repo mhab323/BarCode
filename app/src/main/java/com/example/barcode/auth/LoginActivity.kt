@@ -1,5 +1,6 @@
 package com.example.barcode.auth
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -31,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         const val EVENT_ID = "EVENT_ID"
     }
-
     private val qrScannerLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents != null) {
             Toast.makeText(this, "Event Found!", Toast.LENGTH_SHORT).show()
@@ -42,10 +42,9 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Scan Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
-
     private val googleSignInLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
+        ActivityResultContracts.StartActivityForResult())
+    { result ->
         if (result.resultCode == RESULT_OK) {
             try {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
@@ -77,16 +76,14 @@ class LoginActivity : AppCompatActivity() {
                         redirectToDashboard(cachedUser.role)
                     }
                 },
-                onFailure = { /* Do nothing, stay on login screen */ }
+                onFailure = { }
             )
         }
     }
-
     private fun initFirebase() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
     }
-
     private fun initGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -94,14 +91,13 @@ class LoginActivity : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
-
     private fun setUpListeners() {
         binding.btnLogin.setOnClickListener { loginUser() }
         binding.tvSignUp.setOnClickListener { startActivity(Intent(this, SignUpActivity::class.java)) }
         binding.btnGuestScan.setOnClickListener { barcodeScanner() }
         binding.btnGoogleSignIn.setOnClickListener { googleSignInLauncher.launch(googleSignInClient.signInIntent) }
     }
-
+    @SuppressLint("SetTextI18n")
     private fun barcodeScanner() {
         binding.btnGuestScan.text = "CONNECTING..."
         binding.btnGuestScan.isEnabled = false
@@ -125,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Network Error", Toast.LENGTH_LONG).show()
             }
     }
-
+    @SuppressLint("SetTextI18n")
     private fun loginUser() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
@@ -152,7 +148,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ${exception.message}", Toast.LENGTH_LONG).show()
             }
     }
-
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -163,7 +158,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Firebase Auth Failed: ${exception.message}", Toast.LENGTH_LONG).show()
             }
     }
-
     private fun checkUserRoleAndRedirect() {
         FirebaseManager.fetchAndCacheCurrentUser(
             onSuccess = { cachedUser ->
@@ -186,7 +180,6 @@ class LoginActivity : AppCompatActivity() {
             }
         )
     }
-
     private fun checkUserDatabaseStatus() {
         FirebaseManager.fetchAndCacheCurrentUser(
             onSuccess = { cachedUser ->
@@ -209,7 +202,6 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
     private fun showRoleSelectionDialog() {
         val roles = arrayOf("Event Host", "Bartender (Admin)")
 
@@ -222,7 +214,7 @@ class LoginActivity : AppCompatActivity() {
             }
             .show()
     }
-
+    @SuppressLint("SetTextI18n")
     private fun saveNewUserToFirestore(role: String) {
         val currentUser = auth.currentUser ?: return
 

@@ -102,14 +102,14 @@ class AdminDashBoardFragment : Fragment() {
                 allEvents = liveList
                 val currentDate = calendarHelper.selectedDate ?: LocalDate.now()
                 filterEventsByDate(currentDate)
-                findActiveEvent(liveList)
+                findActiveEvent()
             },
             onFailure = { error ->
                 Toast.makeText(requireContext(), "Failed to load events: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         )
     }
-    private fun findActiveEvent(liveList: List<Event>){
+    private fun findActiveEvent(){
         val liveEvent = allEvents.find { it.status == "live" }
 
         if (liveEvent != null) {

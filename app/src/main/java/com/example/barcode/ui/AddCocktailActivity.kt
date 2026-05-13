@@ -1,5 +1,6 @@
 package com.example.barcode.ui
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -49,7 +50,6 @@ class AddCocktailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         setupListeners()
         checkForEditMode()
     }
@@ -64,6 +64,7 @@ class AddCocktailActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun startUploadProcess() {
         val name = binding.etCocktailName.text.toString().trim()
         val desc = binding.etCocktailDesc.text.toString().trim()
@@ -84,7 +85,7 @@ class AddCocktailActivity : AppCompatActivity() {
                 onSuccess = { downloadUrl ->
                     saveCocktailFinal(name, desc, downloadUrl, currentUserId)
                 },
-                onFailure = { e ->
+                onFailure = { _ ->
                     resetSaveButton()
                 }
             )
@@ -131,11 +132,13 @@ class AddCocktailActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun resetSaveButton() {
         binding.btnSaveCocktail.isEnabled = true
         binding.btnSaveCocktail.text = "SAVE TO MENU"
     }
 
+    @SuppressLint("SetTextI18n")
     private fun checkForEditMode() {
         isEditMode = intent.getBooleanExtra(EDIT_MODE, false)
 

@@ -1,5 +1,6 @@
 package com.example.barcode.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -72,6 +73,7 @@ class CocktailSwipeActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun addCocktailAndMove(){
         val currentCocktail = allCocktails[currentIndex]
         selectedMenu.add(currentCocktail)

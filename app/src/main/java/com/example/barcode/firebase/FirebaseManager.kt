@@ -18,6 +18,12 @@ object FirebaseManager {
 
     var currentUserRole: String? = null
 
+    private val rtdb by lazy {
+        com.google.firebase.database.FirebaseDatabase
+            .getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app")
+            .reference
+    }
+
     fun saveEvent(eventData: HashMap<String, Any>, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         val newEventRef = db.collection("events").document()
 
@@ -199,9 +205,6 @@ object FirebaseManager {
             .addOnFailureListener { e -> onFailure(e) }
     }
     fun placeLiveOrder(order: Order, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        val rtdb =
-            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
-
         val newOrderRef = rtdb.child("orders").child(order.eventId).push()
         order.orderId = newOrderRef.key ?: ""
 
@@ -211,9 +214,6 @@ object FirebaseManager {
     }
 
     fun listenToLiveOrders(eventId: String, onOrdersUpdated: (List<Order>) -> Unit) {
-        val rtdb =
-            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
-
         rtdb.child("orders").child(eventId).orderByChild("status").equalTo("pending")
             .addValueEventListener(object : com.google.firebase.database.ValueEventListener {
                 override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
@@ -239,14 +239,10 @@ object FirebaseManager {
     }
 
     fun completeOrder(eventId: String, orderId: String) {
-        val rtdb =
-            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
         rtdb.child("orders").child(eventId).child(orderId).child("status").setValue("completed")
     }
 
     fun listenToOrderStatus(eventId: String, orderId: String, onOrderReady: () -> Unit) {
-        val rtdb =
-            com.google.firebase.database.FirebaseDatabase.getInstance("https://barcode-app-71522-default-rtdb.europe-west1.firebasedatabase.app").reference
         val statusRef = rtdb.child("orders").child(eventId).child(orderId).child("status")
 
         statusRef.addValueEventListener(object : com.google.firebase.database.ValueEventListener {
